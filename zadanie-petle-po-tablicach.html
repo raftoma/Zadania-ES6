@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="pl">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script>
+            /*
+            Polacz sie z adresem http://domanart.pl/CODERS/zagadki/tablice-es6/dane.json
+            i pobierz z niego json (nic nie wysylaj).
+            Jest tam tablica userów.
+
+            Twoim zadaniem jest wypisać w konsoli poniższe rzeczy.
+            Użyj odpowiednich metod dla tablic. Użyj jak najkrótszego zapisu.
+            Nie używaj var i for.
+
+            Możesz skorzystać z instrukcji:
+            console.group("Nazwa grupy")
+                console.log(....)
+                console.log(....)
+            console.groupEnd();
+
+            do pogrupowania treści w konsoli lub
+            console.log(' ') do oddzielenia zadań
+
+            Wypisz w konsoli:
+            -----------------
+            # tekst: "1. Co zwróciło"
+            --> wypisz to co otrzymałeś z serwera
+            --> a potem zakomentuj by nie śmieciło
+
+
+            # tekst: "1. Wszyscy użytkownicy"
+            --> wypisz imiona i nazwiska użytkoników + ich email np. "Claire Lucas : clairelucas@memora.com"
+
+
+            # tekst: "2. Wszyscy użytkownicy pełnoletni:"
+            --> tablicę z wszystkimi użytkownikami pełnoletnimi
+
+
+            # tekst: "3. Wszystkie kobiety:"
+            --> tablicę z wszystkimi kobietami
+
+
+            # tekst: "4. Użytkownicy z tagiem "dolor":
+            --> tablicę użytkowników którzy mają tag "dolor"
+
+
+            # tekst: "5. Wszyscy użytkownicy są pełnoletni:"
+            --> true / false
+
+
+            # tekst: "6. Niektórzy użytkownicy są pełnoletni:"
+            --> true / false
+
+
+            # tekst: "7. Wszystkie imiona pisani dużymi literami:"
+            --> nową tablicę z imionami użytkowników pisanymi dużymi literami
+
+
+            # tekst "8. Gender war"
+            --> liczbę kobiet i liczbę mężczyzn
+            --> tekst która grupa jest liczniejsza (np. "kobiety wygrywają")
+            */
+
+            const url = "http://domanart.pl/CODERS/zagadki/tablice-es6/dane.json";
+
+            function connect () {
+                $.ajax({
+                    url: url,
+                    dataType: 'json',
+                }).done(function (result) {
+                    console.log(result); //Zad.1
+
+                    const users = result.users;
+
+                    // users.forEach(function(el) {
+                    //     console.log(el);
+                    // });
+
+                    //
+                    // # tekst: "1. Wszyscy użytkownicy"
+                    // --> wypisz imiona i nazwiska użytkoników + ich email np. "Claire Lucas : clairelucas@memora.com"
+                    const names = users.map(function(el) {
+                        console.log(el.name +" : " + el.email);
+                    });
+
+                    // # tekst: "2. Wszyscy użytkownicy pełnoletni:"
+                    // --> tablicę z wszystkimi użytkownikami pełnoletnimi
+                    const mature = users.filter(function(el) {
+                        return el.age <= 18;
+                    });
+                    console.log(mature);
+
+                    // # tekst: "3. Wszystkie kobiety:"
+                    // --> tablicę z wszystkimi kobietami
+                    const woman = users.filter(function(el) {
+                        return el.gender === 'female';
+                    });
+                    console.log(woman);
+
+                    // # tekst: "4. Użytkownicy z tagiem "dolor":
+                    // --> tablicę użytkowników którzy mają tag "dolor"
+                    const tag = users.filter(function(el){
+                        return el.tags.includes('dolor');
+                    });
+                    console.log(tag);
+
+                    // # tekst: "5. Wszyscy użytkownicy są pełnoletni:"
+                    // --> true / false
+                    const everyMature = users.every(function(el) {
+                        return el.age >= 18;
+                    });
+                    console.log(everyMature);
+
+                    // # tekst: "6. Niektórzy użytkownicy są pełnoletni:"
+                    // --> true / false
+                    const someMature = users.some(function(el) {
+                        return el.age >= 18;
+                    });
+                    console.log(someMature);
+
+                    // # tekst: "7. Wszystkie imiona pisani dużymi literami:"
+                    // --> nową tablicę z imionami użytkowników pisanymi dużymi literami
+                    const capitalLetter = users.filter(function(el) {
+                            return el.name.toUpperCase();
+                    });
+                    console.log(capitalLetter);
+
+
+                    // # tekst "8. Gender war"
+                    // --> liczbę kobiet i liczbę mężczyzn
+                    // --> tekst która grupa jest liczniejsza (np. "kobiety wygrywają")
+
+
+                    });
+
+            }
+            connect();
+
+
+
+        </script>
+    </body>
+</html>
