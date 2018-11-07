@@ -85,20 +85,20 @@
                     //
                     // # tekst: "1. Wszyscy użytkownicy"
                     // --> wypisz imiona i nazwiska użytkoników + ich email np. "Claire Lucas : clairelucas@memora.com"
-                    const names = users.map(function(el) {
+                    const names = users.map(function(el){
                         console.log(el.name +" : " + el.email);
                     });
 
                     // # tekst: "2. Wszyscy użytkownicy pełnoletni:"
                     // --> tablicę z wszystkimi użytkownikami pełnoletnimi
-                    const mature = users.filter(function(el) {
+                    const mature = users.filter(function(el){
                         return el.age <= 18;
                     });
                     console.log(mature);
 
                     // # tekst: "3. Wszystkie kobiety:"
                     // --> tablicę z wszystkimi kobietami
-                    const woman = users.filter(function(el) {
+                    const woman = users.filter(function(el){
                         return el.gender === 'female';
                     });
                     console.log(woman);
@@ -112,33 +112,44 @@
 
                     // # tekst: "5. Wszyscy użytkownicy są pełnoletni:"
                     // --> true / false
-                    const everyMature = users.every(function(el) {
+                    const everyMature = users.every(function(el){
                         return el.age >= 18;
                     });
                     console.log(everyMature);
 
                     // # tekst: "6. Niektórzy użytkownicy są pełnoletni:"
                     // --> true / false
-                    const someMature = users.some(function(el) {
+                    const someMature = users.some(function(el){
                         return el.age >= 18;
                     });
                     console.log(someMature);
 
                     // # tekst: "7. Wszystkie imiona pisani dużymi literami:"
                     // --> nową tablicę z imionami użytkowników pisanymi dużymi literami
-                    const capitalLetter = users.filter(function(el) {
-                            return el.name.toUpperCase();
+                    const capitalLetter = users.filter(function(el){
+                        return el.name.toUpperCase();
                     });
                     console.log(capitalLetter);
-
 
                     // # tekst "8. Gender war"
                     // --> liczbę kobiet i liczbę mężczyzn
                     // --> tekst która grupa jest liczniejsza (np. "kobiety wygrywają")
-
-
+                    const females = users.filter(function(el){
+                        return el.gender === "female";
                     });
 
+                    const males = users.filter(function(el){
+                        return el.gender === "male";
+                    });
+
+                    if (males.length > females.length) {
+                        console.log("Mężczyźni wygrywają");
+                    } else {
+                        console.log('Kobiety wygrywają');
+                    }
+
+
+                });
             }
             connect();
 
